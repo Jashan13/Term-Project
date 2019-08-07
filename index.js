@@ -1,25 +1,26 @@
-/*const http = require('http');
-const data = {
-firstName: 'Jashanpreet',
-lastname: 'Singh'
-}
+const express=require('express')
+const app=express()
+const bodyParser=require('body-parser');
 
-const site = http.createServer(function(req, res) {
-console.log('Hello World');
-console.log(req.headers);
-console.log(req.url)
-res.setHeader('Content-Type', 'text/html');
-res.write(JSON.stringify(data));
-res.end();
-});
-site.listen(3000);*/
-
-
-var express = require('express');
-var app = express()
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 app.get('/',function(req,res){
-res.send('helooo there')
-})
+    res.send('GET send')
+});
 
-app.listen(3000)
+app.post('/',function(req,res){
+    console.log(req.body);
+    res.send('POST send')
+});
+
+app.put('/',function(req,res){
+    res.send('PUT send')
+});
+
+app.delete('/',function(req,res){
+    res.send('DELETE send')
+});
+
+
+app.listen(3000);
